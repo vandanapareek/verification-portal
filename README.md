@@ -1,7 +1,7 @@
 # Verification Portal
 
 Welcome to the Verification Portal! This application provides a RESTful API for user registration, authentication, and file verification.
-Please find technical documentation <font size="5">[Here](https://docs.google.com/document/d/1m_Ue6fJlOkVThO_cF8Pm-3E52goKy4JdTLra3uhvdI4/edit?usp=sharing)</font>.
+[Please find technical documentation here](https://docs.google.com/document/d/1m_Ue6fJlOkVThO_cF8Pm-3E52goKy4JdTLra3uhvdI4/edit?usp=sharing).
 
 ## Getting Started
 
@@ -37,7 +37,7 @@ Make sure you have the following software installed on your machine:
 Congratulations! The Verification Portal is now up and running on http://localhost:8000.
 
 ## API Endpoints
-Please find Open API Specification [here] (api-documentation.yaml) and Swagger UI screenshots [here](Swagger)
+[Please find Open API Specification here](api-documentation.yaml) and [Swagger UI screenshots here](Swagger)
 
 ### Register User
 
@@ -97,4 +97,4 @@ php artisan test
 
 ## Roadmap
 
-Please find verification portal roadmap [here](ROADMAP.md)
+[Please find verification portal roadmap here](ROADMAP.md)
