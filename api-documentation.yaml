@@ -1,0 +1,203 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Laravel Verification API
+  description: API documentation for the verification functionality
+
+schemes:
+  - http
+host: localhost:8000
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+
+paths:
+  /api/verify:
+    post:
+      tags:
+        - Verification
+      summary: Verify a JSON file
+      description: This endpoint allows authenticated users to verify a JSON file by sending it as a request and receiving the verification result as a response.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: file
+          in: formData
+          description: File to upload for verification (must be a JSON file, maximum size:2MB)
+          required: true
+          type: file
+      security:
+        - Bearer: []
+      responses:
+        200:
+          description: Verification successful
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  issuer:
+                    type: string
+                  result:
+                    type: string
+                    enum:
+                      - verified
+                      - invalid_recipient
+                      - invalid_issuer
+                      - invalid_signature
+        400:
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        401:
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        500:
+          description: Internal Server Error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  /api/register:
+    post:
+      tags:
+        - Authentication
+      summary: Register a new user
+      description: Registers a new user with the provided information.
+      operationId: registerUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: User registration data
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: Vandana Pareek
+                description: User's full name
+              email:
+                type: string
+                example: vandana.pareek@example.com
+                description: User's email address
+              password:
+                type: string
+                example: password123
+                description: User's password (min 6 characters)
+      responses:
+        '201':
+          description: Successful registration
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Registration successful
+                description: Success message
+        '422':
+          description: Validation error
+          schema:
+            type: object
+            properties:
+              errors:
+                type: object
+                example:
+                  email:
+                    - The email field is required.
+                description: Validation error messages
+        '500':
+          description: Internal server error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: Internal server error
+                description: Error message
+
+  /api/login:
+    post:
+      tags:
+        - Authentication
+      summary: User login
+      description: Authenticates a user with the provided credentials and returns an authentication token.
+      operationId: userLogin
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: User login data
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                example: vandana.pareek@example.com
+                description: User's email address
+              password:
+                type: string
+                example: password123
+                description: User's password
+      responses:
+        '200':
+          description: Successful login
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+                description: Authentication token
+        '401':
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Invalid credentials
+                description: Error message
+        '422':
+          description: Validation error
+          schema:
+            type: object
+            properties:
+              errors:
+                type: object
+                example:
+                  email:
+                    - The email field is required.
+                description: Validation error messages
+        '500':
+          description: Internal server error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: Internal server error
+                description: Error message
