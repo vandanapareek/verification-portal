@@ -1,7 +1,7 @@
 # Verification Portal
 
 Welcome to the Verification Portal! This application provides a RESTful API for user registration, authentication, and file verification.
-Please find technical documentation <font size="5">[Here]</font>(https://docs.google.com/document/d/1m_Ue6fJlOkVThO_cF8Pm-3E52goKy4JdTLra3uhvdI4/edit?usp=sharing).
+Please find technical documentation <font size="5">[Here](https://docs.google.com/document/d/1m_Ue6fJlOkVThO_cF8Pm-3E52goKy4JdTLra3uhvdI4/edit?usp=sharing)</font>.
 
 ## Getting Started
 
